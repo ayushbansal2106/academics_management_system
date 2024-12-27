@@ -1,0 +1,37 @@
+{
+  "canisters": {
+    "academic_management_system_backend": {
+      "main": "src/academic_management_system_backend/main.mo",
+      "type": "motoko"
+    },
+    "academic_management_system_frontend": {
+      "dependencies": [
+        "academic_management_system_backend"
+      ],
+      "source": [
+        "src/academic_management_system_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "academic_management_system_frontend"
+    },
+    "internet_identity": {
+      "candid": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity.did",
+      "frontend": {},
+      "remote": {
+        "id": {
+          "ic": "rdmx6-jaaaa-aaaaa-aaadq-cai"
+        }
+      },
+      "type": "custom",
+      "wasm": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity_dev.wasm.gz"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
