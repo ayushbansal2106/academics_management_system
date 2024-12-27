@@ -1,30 +1,44 @@
-import { useState } from 'react';
-import { academic_management_system_backend } from 'declarations/academic_management_system_backend';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider, createTheme } from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
+import Navbar from './components/Navbar';
+import Dashboard from './components/Dashboard';
+import Students from './components/Students';
+import Login from './components/Login';
+import DocumentManagement from './components/DocumentManagement';
+import AttendanceTracking from './components/AttendanceTracking';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1976d2',
+    },
+    secondary: {
+      main: '#dc004e',
+    },
+  },
+});
 
 function App() {
-  const [greeting, setGreeting] = useState('');
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    const name = event.target.elements.name.value;
-    academic_management_system_backend.greet(name).then((greeting) => {
-      setGreeting(greeting);
-    });
-    return false;
-  }
-
   return (
-    <main>
-      <img src="/logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
-      <form action="#" onSubmit={handleSubmit}>
-        <label htmlFor="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting">{greeting}</section>
-    </main>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <div className="app">
+          <Navbar />
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/students" element={<Students />} />
+              <Route path="/documents" element={<DocumentManagement />} />
+              <Route path="/attendance" element={<AttendanceTracking />} />
+            </Routes>
+          </main>
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 

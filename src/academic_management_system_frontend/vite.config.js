@@ -25,6 +25,8 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
+    host: true, // Add this to allow access from network
+    port: 5173  // Default Vite port
   },
   plugins: [
     react(),
